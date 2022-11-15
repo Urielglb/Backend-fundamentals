@@ -23,7 +23,7 @@ router.post("/register",async (req,res,next)=>{
     };
     const usuarioCreado = await Usuario.find({correo:newUser.correo});
     if (usuarioCreado.length>0) {
-        
+        return res.status(400).send({mensaje:"Ya esta creado el usuario"})
     }
     await Usuario.create(newUser);
     res.status(200).send({mensaje:"Usuario creado"})
